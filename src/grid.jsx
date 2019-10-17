@@ -1,36 +1,41 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
 
-const Grid = (props) => {
+const Grid = ({ buttonClick }) => {
   return (
+    //map over gridArray
+    //return buttons
+    //give id of index
+    //make decision on what inner text to show
     <div className="gridContainer">
-      <div key="1">
-        <button></button>
+      <div>
+        <button id="0" onClick={buttonClick}></button>
       </div>
-      <div key="2">
-        <button></button>
+      <div>
+        <button id="1" onClick={buttonClick}></button>
       </div>
-      <div key="3">
-        <button></button>
+      <div>
+        <button id="2" onClick={buttonClick}></button>
       </div>
-      <div key="4">
-        <button></button>
+      <div>
+        <button id="3" onClick={buttonClick}></button>
       </div>
-      <div key="5">
-        <button></button>
+      <div>
+        <button id="4" onClick={buttonClick}></button>
       </div>
-      <div key="6">
-        <button></button>
+      <div>
+        <button id="5" onClick={buttonClick}></button>
       </div>
-      <div key="7">
-        <button></button>
+      <div>
+        <button id="6" onClick={buttonClick}></button>
       </div>
-      <div key="8">
-        <button></button>
+      <div>
+        <button id="7" onClick={buttonClick}></button>
       </div>
-      <div key="9">
-        <button></button>
+      <div>
+        <button id="8" onClick={buttonClick}></button>
       </div>
     </div>
   );
 };
+export default Grid;

@@ -11,4 +11,13 @@
 }
 .gridContainer {
   border: white;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 30px;
+}
+
+button {
+  height: 100px;
+  width: 100px;
+  font-size: 30px;
 }

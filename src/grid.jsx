@@ -1,40 +1,16 @@
-import React from "react";
-import "./App.css";
+import React from 'react';
+import './App.css';
 
-const Grid = ({ buttonClick }) => {
+const Grid = ({ buttonClick, gridArray }) => {
   return (
-    //map over gridArray
-    //return buttons
-    //give id of index
-    //make decision on what inner text to show
-    <div className="gridContainer">
-      <div>
-        <button id="0" onClick={buttonClick}></button>
-      </div>
-      <div>
-        <button id="1" onClick={buttonClick}></button>
-      </div>
-      <div>
-        <button id="2" onClick={buttonClick}></button>
-      </div>
-      <div>
-        <button id="3" onClick={buttonClick}></button>
-      </div>
-      <div>
-        <button id="4" onClick={buttonClick}></button>
-      </div>
-      <div>
-        <button id="5" onClick={buttonClick}></button>
-      </div>
-      <div>
-        <button id="6" onClick={buttonClick}></button>
-      </div>
-      <div>
-        <button id="7" onClick={buttonClick}></button>
-      </div>
-      <div>
-        <button id="8" onClick={buttonClick}></button>
-      </div>
+    <div className='gridContainer'>
+      {gridArray.map((gridItem, index) => {
+        return (
+          <button id={index} key={index} onClick={buttonClick}>
+            {gridItem === null ? null : gridItem === true ? 'O' : 'X'}
+          </button>
+        );
+      })}
     </div>
   );
 };

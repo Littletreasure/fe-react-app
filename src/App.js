@@ -1,27 +1,29 @@
-import React from "react";
-import "./App.css";
-import Grid from "./grid.jsx";
+import React from 'react';
+import './App.css';
+import Grid from './grid.jsx';
 
 class App extends React.Component {
   state = {
     gridArray: [null, null, null, null, null, null, null, null, null],
-    whoseTurn: true //Math.random() > 0.5 ? true : false // true is "O", false is "X"
+    whoseTurn: Math.random() > 0.5 ? true : false, // true is "O", false is "X"
   };
 
-  buttonClick = event => {
+  buttonClick = (event) => {
     const buttonIndex = +event.target.id;
-    this.setState(currentState => {
+    this.setState((currentState) => {
       return {
-        whoseTurn: !currentState.whoseTurn,
         gridArray: currentState.gridArray.map((value, index) => {
-          console.log(index, buttonIndex);
-          return index === buttonIndex ? currentState.whoseTurn : value;
-        })
+          return index === buttonIndex
+            ? currentState.whoseTurn
+            : value;
+        }),
+        whoseTurn: !currentState.whoseTurn,
       };
     });
+    console.log(this.checkIfWon());
   };
 
-  checkIfWon = event => {
+  checkIfWon = (event) => {
     const checker = (bool1, bool2, bool3) => {
       return (
         (bool1 && bool2 && bool3) ||
@@ -41,9 +43,12 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div className='App'>
         <p>Noughts & Crosses</p>
-        <Grid buttonClick={this.buttonClick} />
+        <Grid
+          buttonClick={this.buttonClick}
+          gridArray={this.state.gridArray}
+        />
       </div>
     );
   }

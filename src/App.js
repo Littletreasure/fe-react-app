@@ -9,13 +9,6 @@ class App extends React.Component {
     footer: "Game in play"
   };
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   const winner = this.checkIfWon();
-  //   if (winner !== undefined) {
-  //     this.setState({ footer: `Game won by ${winner}` });
-  //   }
-  // }
-
   buttonClick = event => {
     const buttonIndex = +event.target.id;
     this.setState(currentState => {
@@ -29,8 +22,14 @@ class App extends React.Component {
   };
 
   buttonClickChecker = () => {
-    if (this.checkIfWon !== null) {
-      const winner = this.checkIfWon();
+    let winner;
+    if (this.checkIfWon() !== undefined) {
+      if (this.checkIfWon() === true) {
+        winner = "Player 2";
+      } else {
+        winner = "Player 1";
+      }
+      // const winner = this.checkIfWon() === true
       this.setState({ footer: `Game won by ${winner}` });
     }
   };
@@ -58,6 +57,8 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>Noughts & Crosses</h1>
+        <p>Player 1 = X / Player 2 = O</p>
+
         <Grid buttonClick={this.buttonClick} gridArray={this.state.gridArray} />
         <footer>{this.state.footer}</footer>
       </div>

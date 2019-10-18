@@ -2,11 +2,20 @@ import React from "react";
 import "./App.css";
 import Grid from "./grid.jsx";
 
+const initialState = {
+  gridArray: [null, null, null, null, null, null, null, null, null],
+  whoseTurn: false, // true is "O", false is "X"
+  footer: "Game in play"
+};
+
 class App extends React.Component {
   state = {
     gridArray: [null, null, null, null, null, null, null, null, null],
     whoseTurn: false, // true is "O", false is "X"
     footer: "Game in play"
+  };
+  reset = event => {
+    this.setState(initialState);
   };
 
   buttonClick = event => {
@@ -29,7 +38,6 @@ class App extends React.Component {
       } else {
         winner = "Player 1";
       }
-      // const winner = this.checkIfWon() === true
       this.setState({ footer: `Game won by ${winner}` });
     }
   };
@@ -57,9 +65,14 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>Noughts & Crosses</h1>
-        <p>Player 1 = X / Player 2 = O</p>
+        <p className="player">Player 1 = X / Player 2 = O</p>
 
         <Grid buttonClick={this.buttonClick} gridArray={this.state.gridArray} />
+        <p>
+          <button onClick={this.reset} className="reset">
+            Reset Game
+          </button>
+        </p>
         <footer>{this.state.footer}</footer>
       </div>
     );

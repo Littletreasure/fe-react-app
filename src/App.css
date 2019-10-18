@@ -1,5 +1,4 @@
 .App {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -9,8 +8,9 @@
   color: white;
   text-align: center;
 }
+
 .gridContainer {
-  border: white;
+  border: rgb(163, 28, 28);
   display: grid;
   grid-template-columns: auto auto auto;
   grid-gap: 30px;
@@ -20,4 +20,26 @@ button {
   height: 100px;
   width: 100px;
   font-size: 30px;
+}
+
+h1 {
+  background-color: black;
+  border-color: rgb(88, 88, 88);
+  border-style: solid;
+  font-family: cursive;
+  padding: 10px;
+}
+.reset {
+  font-size: 10px;
+  height: 30px;
+  width: 70px;
+}
+footer {
+  font-size: 30px;
+  font-family: sans-serif;
+  color: black;
+}
+.player {
+  font-family: sans-serif;
+  color: black;
 }

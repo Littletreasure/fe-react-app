@@ -1,29 +1,42 @@
-import React from 'react';
-import './App.css';
-import Grid from './grid.jsx';
+import React from "react";
+import "./App.css";
+import Grid from "./grid.jsx";
 
 class App extends React.Component {
   state = {
     gridArray: [null, null, null, null, null, null, null, null, null],
-    whoseTurn: Math.random() > 0.5 ? true : false, // true is "O", false is "X"
+    whoseTurn: false, // true is "O", false is "X"
+    footer: "Game in play"
   };
 
-  buttonClick = (event) => {
+  // componentDidUpdate(prevProps, prevState) {
+  //   const winner = this.checkIfWon();
+  //   if (winner !== undefined) {
+  //     this.setState({ footer: `Game won by ${winner}` });
+  //   }
+  // }
+
+  buttonClick = event => {
     const buttonIndex = +event.target.id;
-    this.setState((currentState) => {
+    this.setState(currentState => {
       return {
         gridArray: currentState.gridArray.map((value, index) => {
-          return index === buttonIndex
-            ? currentState.whoseTurn
-            : value;
+          return index === buttonIndex ? currentState.whoseTurn : value;
         }),
-        whoseTurn: !currentState.whoseTurn,
+        whoseTurn: !currentState.whoseTurn
       };
-    });
-    console.log(this.checkIfWon());
+    }, this.buttonClickChecker);
   };
 
-  checkIfWon = (event) => {
+  buttonClickChecker = () => {
+    if (this.checkIfWon !== null) {
+      const winner = this.checkIfWon();
+      this.setState({ footer: `Game won by ${winner}` });
+    }
+  };
+
+  checkIfWon = event => {
+    console.log(this.state);
     const checker = (bool1, bool2, bool3) => {
       return (
         (bool1 && bool2 && bool3) ||
@@ -43,12 +56,10 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className='App'>
-        <p>Noughts & Crosses</p>
-        <Grid
-          buttonClick={this.buttonClick}
-          gridArray={this.state.gridArray}
-        />
+      <div className="App">
+        <h1>Noughts & Crosses</h1>
+        <Grid buttonClick={this.buttonClick} gridArray={this.state.gridArray} />
+        <footer>{this.state.footer}</footer>
       </div>
     );
   }

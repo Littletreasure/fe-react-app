@@ -23,14 +23,16 @@ class App extends React.Component {
 
   buttonClick = event => {
     const buttonIndex = +event.target.id;
-    this.setState(currentState => {
-      return {
-        gridArray: currentState.gridArray.map((value, index) => {
-          return index === buttonIndex ? currentState.whoseTurn : value;
-        }),
-        whoseTurn: !currentState.whoseTurn
-      };
-    }, this.buttonClickChecker);
+    if (this.state.gridArray[buttonIndex] === null) {
+      this.setState(currentState => {
+        return {
+          gridArray: currentState.gridArray.map((value, index) => {
+            return index === buttonIndex ? currentState.whoseTurn : value;
+          }),
+          whoseTurn: !currentState.whoseTurn
+        };
+      }, this.buttonClickChecker);
+    }
   };
 
   buttonClickChecker = () => {

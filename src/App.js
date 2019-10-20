@@ -1,18 +1,21 @@
 import React from "react";
 import "./App.css";
-import Grid from "./grid.jsx";
+import Grid from "./Components/grid.jsx";
+import Grid2 from "./Components/grid2.jsx";
 
 const initialState = {
   gridArray: [null, null, null, null, null, null, null, null, null],
   whoseTurn: false, // true is "O", false is "X"
-  footer: "Game in play"
+  footer: "Game in play",
+  alert: null
 };
 
 class App extends React.Component {
   state = {
     gridArray: [null, null, null, null, null, null, null, null, null],
     whoseTurn: false, // true is "O", false is "X"
-    footer: "Game in play"
+    footer: "Game in play",
+    alert: null
   };
   reset = event => {
     this.setState(initialState);
@@ -42,8 +45,11 @@ class App extends React.Component {
     }
   };
 
+  won() {
+    this.setState({ alert: alert("Winner, Winner, Chicken Dinner!") });
+  }
+
   checkIfWon = event => {
-    console.log(this.state);
     const checker = (bool1, bool2, bool3) => {
       return (
         (bool1 && bool2 && bool3) ||
@@ -62,20 +68,40 @@ class App extends React.Component {
   };
 
   render() {
-    return (
-      <div className="App">
-        <h1>Noughts & Crosses</h1>
-        <p className="player">Player 1 = X / Player 2 = O</p>
+    if (this.checkIfWon() === true || this.checkIfWon() === false) {
+      return (
+        <div className="App">
+          <h1>Noughts & Crosses</h1>
+          <p className="player">Player 1 = X --- Player 2 = O</p>
 
-        <Grid buttonClick={this.buttonClick} gridArray={this.state.gridArray} />
-        <p>
-          <button onClick={this.reset} className="reset">
-            Reset Game
-          </button>
-        </p>
-        <footer>{this.state.footer}</footer>
-      </div>
-    );
+          <Grid2 gridArray={this.state.gridArray} />
+          <p>
+            <button onClick={this.reset} className="reset">
+              Reset Game
+            </button>
+          </p>
+          <footer>{this.state.footer}</footer>
+        </div>
+      );
+    } else {
+      return (
+        <div className="App">
+          <h1>Noughts & Crosses</h1>
+          <p className="player">Player 1 = X --- Player 2 = O</p>
+
+          <Grid
+            buttonClick={this.buttonClick}
+            gridArray={this.state.gridArray}
+          />
+          <p>
+            <button onClick={this.reset} className="reset">
+              Reset Game
+            </button>
+          </p>
+          <footer>{this.state.footer}</footer>
+        </div>
+      );
+    }
   }
 }
 

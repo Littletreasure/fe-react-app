@@ -13,7 +13,7 @@
   border: rgb(163, 28, 28);
   display: grid;
   grid-template-columns: auto auto auto;
-  grid-gap: 30px;
+  grid-gap: 20px;
 }
 
 button {
@@ -23,23 +23,28 @@ button {
 }
 
 h1 {
-  background-color: black;
-  border-color: rgb(88, 88, 88);
+  background-color: rgb(4, 102, 102);
+  border-color: rgb(1, 39, 44);
   border-style: solid;
-  font-family: cursive;
-  padding: 10px;
+  font-family: sans-serif;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 .reset {
   font-size: 10px;
   height: 30px;
   width: 70px;
+  border-color: indigo;
+  background-color: lightblue;
+  outline: none;
 }
 footer {
   font-size: 30px;
-  font-family: sans-serif;
+  font-family: cursive;
   color: black;
+  padding-bottom: 20px;
 }
 .player {
-  font-family: sans-serif;
+  font-family: cursive;
   color: black;
 }
